@@ -203,7 +203,7 @@ def add_product(request):
 
 
 def view_product(request):
-    products = Product.objects.all().filter(is_available=True)
+    products = Product.objects.all()
     context = {'products': products}
     return render(request, 'store/product-view.html',context)
 

@@ -24,11 +24,6 @@ def add_category(request):
     # else:
     #     messages.error(request, "Fail to add category.")
     #     return redirect('admin-panel-add-category')
-    print(categories)
-    for cat in categories:
-        print(cat.category_name)
-        print(cat.description)
-        print(cat.slug)
     params = {'categories': categories}
     return render(request, 'category/add-category.html', params)
 
