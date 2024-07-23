@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from category.models import Category
 from . models import Product
+from carts.models import CartItem
+from carts.views import _cart_id
 
 
 
@@ -25,9 +27,11 @@ def product_detail(request, category_slug, product_slug):
     try:
         # making url (store/category_slug/product_slug)
         products = Product.objects.get(category__slug=category_slug, slug=product_slug)
+        in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request),  product=products).exists()
     except Exception as e:
         raise e
     context = {
         'product': products,
+        'in_cart': in_cart,
     }
     return render(request, 'store/product-detail.html', context)
