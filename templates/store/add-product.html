@@ -1,0 +1,61 @@
+{% extends 'account/admin_panel/admin-base.html' %}
+{% load static %}
+{% block title%} Category {% endblock %} 
+
+{% block body %}
+
+<div class="container-fluid px-4">
+    <div class="container">
+    	<div class="card shadow mb-4 w-100">
+    		<div class="card-header py-4 text-center"> 
+            	<h5 class="d-inline font-weight-bold textred">Add Product</h5>
+            </div>
+        	<div class="card-body">
+	            <form method="post" enctype="multipart/form-data">
+	            	{% csrf_token %}
+                    <p>
+                        <label>Select Category</label>
+                        <select class="form-control" name="category" required>
+                            {% for category in categories %}
+                                <option value="{{ category.id }}">{{ category.category_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </p>
+                    <p>
+	    				<label for="product_name">Product Name :</label>
+	    				<input type="text" name="product_name" maxlength="200" class="form-control" required>
+	    			</p>
+	    			<p>
+	    				<label for="description">Description:</label>
+	    				<textarea class="form-control" name="description" rows="4" cols="50"></textarea>
+	    			</p>
+                    <p>
+	    				<label for="price">Price :</label>
+	    				<input type="text" name="price" maxlength="200" class="form-control" required>
+	    			</p>
+	    			 <p>
+	    				<label for="myfile">Product Image :</label>
+	    				<input type="file" name="category_image" class="form-control">
+	    			</p>
+                    <p>
+	    				<label for="stock">Stock :</label>
+	    				<input type="text" name="stock" maxlength="200" class="form-control" required>
+	    			</p>
+                    <p>
+                        <label><input type="radio" name="is_availabe" value="0">Not Available</label><br>
+                        <label><input type="radio" name="is_availabe" value="1">Available</label><br>
+                    </p>
+					<div class="text-center">
+	                	<button class="text-white btn btn-light red" type="submit" style="font-weight: bold;">Save</button>
+					</div>
+	            </form>
+        	</div>
+   		</div>
+
+	</div>
+</div>
+<!-- <script>
+
+</script> -->
+
+{% endblock body %}

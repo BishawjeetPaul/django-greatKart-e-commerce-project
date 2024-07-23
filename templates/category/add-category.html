@@ -1,0 +1,42 @@
+{% extends 'account/admin_panel/admin-base.html' %}
+{% load static %}
+{% block title%} Category {% endblock %} 
+
+{% block body %}
+
+<div class="container-fluid px-4">
+    <div class="container">
+    	<div class="card shadow mb-4 w-100">
+    		<div class="card-header py-4 text-center"> 
+            	<h5 class="d-inline font-weight-bold textred">Add Category</h5>
+            </div>
+        	<div class="card-body">
+	            <form method="post" enctype="multipart/form-data">
+	            	{% csrf_token %}
+	                <p>
+	    				<label for="category_name">Category Name :</label>
+	    				<input type="text" name="category_name" maxlength="200" class="form-control" required>
+	    			</p>
+	    			<p>
+	    				<label for="description">Description:</label>
+	    				<!-- <input type="text" name="description" maxlength="200"  required> -->
+	    				<textarea class="form-control" name="description" rows="4" cols="50"></textarea>
+	    			</p>
+	    			 <p>
+	    				<label for="myfile">Category Image :</label>
+	    				<input type="file" name="category_image" class="form-control" required>
+	    			</p>
+					<div class="text-center">
+	                	<button class="text-white btn btn-light red" type="submit" style="font-weight: bold;">Save</button>
+					</div>
+	            </form>
+        	</div>
+   		</div>
+
+	</div>
+</div>
+<!-- <script>
+
+</script> -->
+
+{% endblock body %}
