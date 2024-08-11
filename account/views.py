@@ -10,11 +10,11 @@ from django.contrib import messages, auth
 
 
 
-
+# this function for admin panel dashboard
 def dashboard(request):
     return render(request, 'includes/main-dashboard.html')
 
-
+# this function for login user.
 def login_user(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -30,7 +30,7 @@ def login_user(request):
             return redirect("login-user")
     return render(request, 'account/login.html')
 
-
+# this function for register new user.
 def register_user(request):
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
@@ -76,13 +76,13 @@ def register_user(request):
             messages.error(request, "Password does not match.!")
     return render(request, 'account/register.html')
 
-
+# this function for logout user.
 def logout_user(request):
     logout(request)
     messages.success(request, "You are logged out.")
     return redirect('login-user')
 
-
+# this fucntion for sent activation link to user email id for activate user account.
 def activate(request, uidb64, token):
     try:
         # decode token
@@ -101,7 +101,7 @@ def activate(request, uidb64, token):
         messages.error(request, 'Invalid activation link.')
         return redirect('register-user')
 
-
+# this function for user account forget password
 def forget_password(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -131,7 +131,7 @@ def forget_password(request):
             return redirect("forget-password")
     return render(request, 'account/forget-password.html')
 
-
+# this function for sent link in user email id to validate user.
 def password_validate(request, uidb64, token):
     try:
         # Decoded token
@@ -148,7 +148,7 @@ def password_validate(request, uidb64, token):
         messages.error(request, 'This link has been expired!')
         return redirect('login-user')
 
-    
+# this function for update old password to new password in user account.
 def reset_password(request):
     if request.method == 'POST':
         password = request.POST.get('password')
@@ -168,11 +168,11 @@ def reset_password(request):
 
 # //----------------------ADMIN-DASHBOARD---------------------// #
 # -------------------------------------------------------------  #
-
+# this function for admin panel dashboard.
 def admin_dashboard(request):
     return render(request, 'account/admin_panel/admin-dashboard.html')
 
-
+# this function for add products.
 def add_product(request):
     category_dropdown = Category.objects.all()
     if request.method == 'POST':
@@ -201,13 +201,13 @@ def add_product(request):
     }
     return render(request, 'store/add-product.html', context)
 
-
+# this function for view all products.
 def view_product(request):
     products = Product.objects.all()
     context = {'products': products}
     return render(request, 'store/product-view.html',context)
 
-
+# this function for update particular product.
 def edit_product(request, product_id):
     product = Product.objects.get(id=product_id)
     category = Category.objects.all()
@@ -242,7 +242,7 @@ def edit_product(request, product_id):
         }
     return render(request, 'store/edit-product.html', context)
 
-
+# this function for delete particular product.
 def delete_product(request, product_id):
     product = Product.objects.get(id=product_id)
     product.delete()

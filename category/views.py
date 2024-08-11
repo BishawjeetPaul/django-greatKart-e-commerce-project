@@ -3,12 +3,13 @@ from . models import Category
 
 
 
-
+# this fucntion work is show all the categories.
 def view_category(request):
     categories = Category.objects.all()
     return render(request, 'category/category-panel.html', {'categories': categories})
 
 
+# this function work is add the category.
 def add_category(request):
     categories = Category.objects.all()
     if request.method == 'POST':
@@ -28,6 +29,7 @@ def add_category(request):
     return render(request, 'category/add-category.html', params)
 
 
+# this function work is edit particular category.
 def edit_category(request, category_id):
     category = Category.objects.get(id=category_id)
     context = {
@@ -50,6 +52,7 @@ def edit_category(request, category_id):
     return render(request, 'category/edit-category.html',context)
 
 
+# this function work is delete particular category.
 def delete_category(request, category_id):
     category = Category.objects.get(id=category_id)
     category.delete()

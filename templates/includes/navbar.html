@@ -42,7 +42,11 @@
 							<div class="widget-header">
 								<small class="title text-muted">Welcome {{ user.username }}</small>
 								<div>
-									<a href="{% url 'admin-dashboard' %}">Dashboard</a> <span class="dark-transp"> | </span>
+									{% if user.is_superadmin %}
+										<a href="{% url 'admin-dashboard' %}">Main Dashboard</a> <span class="dark-transp"> | </span>
+									{% else %}
+										<a href="{% url 'home' %}">Dashboard</a> <span class="dark-transp"> | </span>
+									{% endif %}
 									<a href="{% url 'logout-user' %}"> Logout</a>
 								</div>
 							</div>

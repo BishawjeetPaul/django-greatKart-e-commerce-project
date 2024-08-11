@@ -9,7 +9,7 @@ from django.db.models import Q
 
 
 
-
+# this function work for pagination and show all the product in store page. 
 def store(request, category_slug=None):
     categories = None
     products = None
@@ -33,6 +33,7 @@ def store(request, category_slug=None):
     return render(request, 'store/store.html', context)
 
 
+# this function work for show the details of the products.
 def product_detail(request, category_slug, product_slug):
     try:
         # making url (store/category_slug/product_slug)
@@ -47,6 +48,7 @@ def product_detail(request, category_slug, product_slug):
     return render(request, 'store/product-detail.html', context)
 
 
+# this function work for search the products.
 def search(request):
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']

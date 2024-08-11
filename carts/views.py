@@ -40,6 +40,7 @@ def add_cart(request, product_id):
     return redirect('cart')
 
 
+# This function is remove the card.
 def remove_card(request, product_id):
     cart = Cart.objects.get(cart_id=_cart_id(request))
     product = get_object_or_404(Product, id=product_id)
@@ -52,6 +53,7 @@ def remove_card(request, product_id):
     return redirect('cart')
 
 
+# This function is remove cart items in the cart
 def remove_cart_item(request, product_id):
     cart = Cart.objects.get(cart_id=_cart_id(request))
     product = get_object_or_404(Product, id=product_id)
@@ -60,6 +62,7 @@ def remove_cart_item(request, product_id):
     return redirect('cart')
 
 
+# This function is show the cart or carts items.
 def cart(request, total=0, quantity=0, cart_items=None):
     tax = 0
     grand_total = 0
