@@ -4,9 +4,13 @@ from . import views
 
 urlpatterns = [
     # -----------------------LOGIN-SYSTEM-------------------------- #
+    # this url path for login user.
     path('login', views.login_user, name='login-user'),
+    # this url path for register new user.
     path('signup', views.register_user, name='register-user'),
+    # this url path for logout user.
     path('logout', views.logout_user, name='logout-user'),
+    
     path('dashboard', views.dashboard, name='dashboard'),
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
     path('forget-password', views.forget_password, name='forget-password'),
